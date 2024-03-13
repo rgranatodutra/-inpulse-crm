@@ -1,0 +1,22 @@
+{
+  "name": "@inpulse-crm/connection",
+  "version": "1.0.0",
+  "description": "Database connection module for inPulse CRM",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "url": "https://github.com/rgranatodutra/inpulse-crm-connection"
+  },
+  "author": "Renan G. Dutra",
+  "license": "MIT",
+  "dependencies": {
+    "mysql2": "^3.9.2"
+  },
+  "private": false
+}
