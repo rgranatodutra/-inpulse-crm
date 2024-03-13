@@ -1,0 +1,26 @@
+{
+  "name": "inpulse-crm",
+  "version": "1.0.0",
+  "description": "All needed packages for inPulse CRM development and integrations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rgranatodutra/inpulse-crm.git"
+  },
+  "keywords": [
+    "inpulse",
+    "crm"
+  ],
+  "author": "Renan G. Dutra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rgranatodutra/inpulse-crm/issues"
+  },
+  "homepage": "https://github.com/rgranatodutra/inpulse-crm#readme",
+  "workspaces": [
+    "packages/*"
+  ]
+}
