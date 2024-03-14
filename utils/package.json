@@ -1,0 +1,11 @@
+{
+  "name": "@inpulse-crm/utils",
+  "version": "1.0.0",
+  "description": "Utils module for inPulse CRM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Renan G. Dutra",
+  "license": "MIT"
+}

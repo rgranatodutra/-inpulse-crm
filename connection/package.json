@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Database connection module for inPulse CRM",
   "main": "index.js",
-  "types": "dist/index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "start": "echo \"Error: no test specified\" && exit 1"
   },
