@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Renan G. Dutra",
-  "license": "MIT"
+  "license": "MIT",
+  "peerDependencies": {
+    "mysql2": "^3.9.2"
+  }
 }

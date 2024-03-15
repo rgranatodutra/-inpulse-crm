@@ -52,7 +52,7 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
     const limit = perPage || 50;
     const offset = page ? (page - 1) * limit : 0;
 
-    whereString += `LIMIT ${limit} OFFSET ${offset}`;
+    whereString += `LIMIT ${limit + 1} OFFSET ${offset}`;
 
     return [whereString, parameters];
 }
