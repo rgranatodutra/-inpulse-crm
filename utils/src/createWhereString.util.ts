@@ -4,10 +4,10 @@ type PaginationQueryParameters<T> = {
     ORDENAR_POR: keyof T;
 }
 
-export type FilterWithPaginationQueryParamters<T> = Partial<Record<keyof T, string>> & PaginationQueryParameters<T>;
+export type FilterWithPaginationQueryParameters<T> = Partial<Record<keyof T, string>> & PaginationQueryParameters<T>;
 
 interface CreateWhereStringOptions<T> {
-    parameters: FilterWithPaginationQueryParamters<T>,
+    parameters: FilterWithPaginationQueryParameters<T>,
     likeColumns: Array<keyof T>,
     dateColumns: Array<keyof T>,
     numberColumns: Array<keyof T>,
