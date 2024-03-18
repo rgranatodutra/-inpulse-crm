@@ -13,7 +13,7 @@ interface CreateWhereStringOptions<T> {
     numberColumns: Array<keyof T>,
 }
 
-export default function createWhereString<T>({ parameters, likeColumns, dateColumns, numberColumns }: CreateWhereStringOptions<T>) {
+export default function createWhereString<T>({ parameters, likeColumns, dateColumns, numberColumns }: CreateWhereStringOptions<T>): [string, Array<any>] {
     const { ORDENAR_POR, page, perPage, ...columnFilters } = parameters;
     const columnsEntries = Object.entries(columnFilters) as [keyof T, string][];
 
