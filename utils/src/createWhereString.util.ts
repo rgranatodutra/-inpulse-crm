@@ -1,5 +1,13 @@
+type PaginationQueryParameters<T> = {
+    page: string;
+    perPage: string;
+    ORDENAR_POR: keyof T;
+}
+
+export type FilterWithPaginationQueryParamters<T> = Partial<Record<keyof T, string>> & PaginationQueryParameters<T>;
+
 interface CreateWhereStringOptions<T> {
-    parameters: Partial<Record<keyof T, string> & { page: number, perPage: number, ORDENAR_POR: keyof T }>,
+    parameters: FilterWithPaginationQueryParamters<T>,
     likeColumns: Array<keyof T>,
     dateColumns: Array<keyof T>,
     numberColumns: Array<keyof T>,
@@ -49,8 +57,8 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
         whereString += `ORDER BY ${String(ORDENAR_POR)} ASC\n`;
     }
 
-    const limit = perPage || 50;
-    const offset = page ? (page - 1) * limit : 0;
+    const limit = Number(perPage) || 50;
+    const offset = page ? (Number(page) - 1) * limit : 0;
 
     whereString += `LIMIT ${limit + 1} OFFSET ${offset}`;
 
