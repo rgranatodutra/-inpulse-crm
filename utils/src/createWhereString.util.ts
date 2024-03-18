@@ -42,7 +42,7 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
                 queryParameters.push(endDate);
             }
         } else {
-            const isStrictEqualColumn = likeColumns.includes(key) || typeof value !== "string";
+            const isStrictEqualColumn = !likeColumns.includes(key) || typeof value !== "string";
             const isNumberColumn = numberColumns.includes(key);
             const querySymbol = isStrictEqualColumn ? "=" : "LIKE";
             const queryValue = isNumberColumn ? Number(value) : (isStrictEqualColumn ? value : `%${value}%`);
