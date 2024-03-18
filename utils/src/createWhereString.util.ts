@@ -62,5 +62,5 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
 
     whereString += `LIMIT ${limit + 1} OFFSET ${offset}`;
 
-    return [whereString, parameters];
+    return [whereString, queryParameters];
 }
