@@ -1,7 +1,7 @@
-import { Connection } from "mysql2/promise";
+import { Connection, FieldPacket, RowDataPacket } from "mysql2/promise";
 
 interface PaginatedResponse<T> {
-    data: Array<T>,
+    data: T[],
     page: {
         current: number;
         next: boolean;
@@ -16,9 +16,9 @@ export default async function queryAndPaginate<T>(
     page: number,
     perPage: number,
 ): Promise<PaginatedResponse<T>> {
-    const [rows] = await connection.execute(queryString, queryParameters);
+    const [rows, _]: [RowDataPacket[], FieldPacket[]] = await connection.execute(queryString, queryParameters);
 
-    const data: Array<T> = rows.length > perPage ? rows.slice(0, perPage) : rows;
+    const data: T[] = (rows.length > perPage ? rows.slice(0, perPage) : rows) as T[];
 
     const paginatedResponse = {
         data, page: {

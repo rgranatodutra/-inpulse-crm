@@ -10,5 +10,12 @@
   "license": "MIT",
   "peerDependencies": {
     "mysql2": "^3.9.2"
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21"
   }
 }
