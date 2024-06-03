@@ -12,6 +12,7 @@
     "mysql2": "^3.9.2"
   },
   "dependencies": {
+    "@rgranatodutra/http-errors": "^1.0.6",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1"
   },

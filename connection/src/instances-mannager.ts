@@ -11,12 +11,12 @@ export class InstancesMannager {
         clientName: string,
         query: string,
         parameters: Array<any>
-    ): Promise<{ result: Array<T> }> {
+    ): Promise<{ result: T }> {
         return new Promise(async (res, rej) => {
-            const requestUrl = this.baseUrl + `/api/${clientName}/query`;
+            const requestUrl = this.baseUrl + `/api/instances/${clientName}/query`;
             const requestBody = { query, parameters }
 
-            await axios.post<{ result: Array<T> }>(requestUrl, requestBody)
+            await axios.post<{ result: T }>(requestUrl, requestBody)
                 .then((response) => {
                     res(response.data);
                 })

@@ -20,6 +20,8 @@ export default function validateDto(dtoClass: any) {
             return res.status(400).json({ errors: validationErrors });
         }
 
+        req.body = dtoInstance;
+
         next();
     }
 }

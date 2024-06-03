@@ -1,6 +1,6 @@
 {
   "name": "inpulse-crm",
-  "version": "1.0.18",
+  "version": "1.1.10",
   "description": "All needed packages for inPulse CRM development and integrations.",
   "main": "index.js",
   "scripts": {
