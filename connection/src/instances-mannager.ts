@@ -21,7 +21,7 @@ export class InstancesMannager {
                     res(response.data);
                 })
                 .catch((err) => {
-                    rej(err);
+                    rej(err.response ? err.response.data : err["errors"]);
                 });
         });
     }
