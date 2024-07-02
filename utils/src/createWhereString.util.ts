@@ -11,9 +11,10 @@ interface CreateWhereStringOptions<T> {
     likeColumns: Array<keyof T>,
     dateColumns: Array<keyof T>,
     numberColumns: Array<keyof T>,
+    alias?: string
 }
 
-export default function createWhereString<T>({ parameters, likeColumns, dateColumns, numberColumns }: CreateWhereStringOptions<T>): [string, Array<any>] {
+export default function createWhereString<T>({ parameters, likeColumns, dateColumns, numberColumns, alias }: CreateWhereStringOptions<T>): [string, Array<any>] {
     const { ORDENAR_POR, page, perPage, ...columnFilters } = parameters;
     const columnsEntries = Object.entries(columnFilters) as [keyof T, string][];
 
@@ -22,6 +23,7 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
 
     for (const entry of columnsEntries) {
         const [key, value] = entry;
+        const keyWithAlias = alias ? `${alias}.${key as string}` : key as string;
 
         const whereOrAnd = whereString.includes("WHERE") ? "AND" : "WHERE";
         const isDateColumn = dateColumns.includes(key);
@@ -31,14 +33,14 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
             const [initialDate, endDate] = [dates[0] ? new Date(dates[0]) : null, dates[1] ? new Date(dates[1]) : null];
 
             if (initialDate && endDate) {
-                whereString += `${whereOrAnd} ${String(key)} BETWEEN ? AND ?\n`;
+                whereString += `${whereOrAnd} ${String(keyWithAlias)} BETWEEN ? AND ?\n`;
                 queryParameters.push(initialDate);
                 queryParameters.push(endDate);
             } else if (initialDate) {
-                whereString += `${whereOrAnd} ${String(key)} > ?\n`;
+                whereString += `${whereOrAnd} ${String(keyWithAlias)} > ?\n`;
                 queryParameters.push(initialDate);
             } else if (endDate) {
-                whereString += `${whereOrAnd} ${String(key)} < ?\n`;
+                whereString += `${whereOrAnd} ${String(keyWithAlias)} < ?\n`;
                 queryParameters.push(endDate);
             }
         } else {
@@ -47,7 +49,7 @@ export default function createWhereString<T>({ parameters, likeColumns, dateColu
             const querySymbol = isStrictEqualColumn ? "=" : "LIKE";
             const queryValue = isNumberColumn ? Number(value) : (isStrictEqualColumn ? value : `%${value}%`);
 
-            whereString += `${whereOrAnd} ${String(key)} ${querySymbol} ?\n`;
+            whereString += `${whereOrAnd} ${String(keyWithAlias)} ${querySymbol} ?\n`;
 
             queryParameters.push(queryValue);
         }
